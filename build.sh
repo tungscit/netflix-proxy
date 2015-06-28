@@ -80,9 +80,9 @@ sudo iptables -A DOCKER -m state --state RELATED,ESTABLISHED -j ACCEPT
 sudo iptables -A DOCKER -p icmp -j ACCEPT
 sudo iptables -A DOCKER -s $clientip/32 -p udp -m udp --dport 53 -j ACCEPT
 sudo iptables -A DOCKER -j REJECT --reject-with icmp-host-prohibited
-echo iptables-persistent iptables-persistent/autosave_v4 boolean true | sudo debconf-set-selections
-echo iptables-persistent iptables-persistent/autosave_v6 boolean true | sudo debconf-set-selections
-sudo apt-get -y install iptables-persistent
+# echo iptables-persistent iptables-persistent/autosave_v4 boolean true | sudo debconf-set-selections
+# echo iptables-persistent iptables-persistent/autosave_v6 boolean true | sudo debconf-set-selections
+# sudo apt-get -y install iptables-persistent
 
 echo "Updating db.override with ipaddr"=$extip "and date="$date
 sudo $(which sed) -i "s/127.0.0.1/${extip}/g" data/db.override
